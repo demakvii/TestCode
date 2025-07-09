@@ -26,7 +26,7 @@ public class BinarySearch {
         int c = 0;
         while (l<=r){
             c++;
-            int m = (l+r)/2;
+            int m = l + (r-l)/2;
             if(arr[m] == search) {
                 System.out.println("Count:" + c);
                 return m;
