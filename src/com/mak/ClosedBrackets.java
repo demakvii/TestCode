@@ -12,6 +12,7 @@ public class ClosedBrackets {
     public static void main(String[] args) {
         System.out.println("Expression is " + (isValid("{[()]}") ? "valid" : "invalid"));
         System.out.println("Expression is " + (isValid("{[()]]}") ? "valid" : "invalid"));
+        System.out.println("Expression is " + (isValid("{") ? "valid" : "invalid"));
     }
 
     private static boolean isValid(String expression) {
@@ -26,7 +27,7 @@ public class ClosedBrackets {
                 }
             }
         }
-        return true;
+        return stack.isEmpty();
     }
 
 }
