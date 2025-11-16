@@ -85,6 +85,18 @@ public class BST {
         return root;
     }
 
+    public static boolean validBST(Node root, int lowerBound, int upperBound){
+        if (root == null)
+            return true;
+
+        if(lowerBound <= root.value && root.value <= upperBound){
+            return validBST(root.left, lowerBound, root.value) &&
+                    validBST(root.right, root.value, upperBound);
+        }
+        return false;
+
+    }
+
     public static void main(String[] args) {
         List<Integer> data = List.of(3, 2, 5, 1, 4, 6);
         Node root = null;
@@ -96,9 +108,28 @@ public class BST {
         System.out.println("Found: " + search(root, 10));
 
         print(delete(root, 6));
+        System.out.println();
         print(delete(root, 2));
+        System.out.println();
         print(delete(root, 5));
+        System.out.println();
         print(delete(root, 3));
+        System.out.println();
+
+        var root1 = new Node(4);
+        root1.left = new Node(2);
+        root1.right = new Node(5);
+
+        root1.right.left = new Node(3);
+        root1.right.right = new Node(6);
+
+        System.out.println("Valid BST: " + validBST(root1, Integer.MIN_VALUE, Integer.MAX_VALUE));
+
+        Node root2 = null;
+        for (int value : data){
+            root2 = insert(root, value);
+        }
+        System.out.println("Valid BST: " + validBST(root2, Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
 
 }
